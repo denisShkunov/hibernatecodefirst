@@ -1,6 +1,7 @@
 package com.example.hibernatecodefirst.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "vehicles")
@@ -14,14 +15,14 @@ public abstract class Vehicle {
     @Column(name = "fuel_type")
     private String fuelType;
     private String model;
-    private long price;
+    private BigDecimal price;
     @Basic
     private String type;
 
     protected Vehicle() {
     }
 
-    public Vehicle(long id, String fuelType, String model, long price, String type) {
+    public Vehicle(long id, String fuelType, String model, BigDecimal price, String type) {
         this.id = id;
         this.fuelType = fuelType;
         this.model = model;
@@ -53,11 +54,11 @@ public abstract class Vehicle {
         this.model = model;
     }
 
-    public long getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

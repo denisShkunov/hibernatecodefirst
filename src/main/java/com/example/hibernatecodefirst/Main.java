@@ -30,10 +30,27 @@ public class Main {
 
         try {
             //todo  исправить long на BigDecimal по заданию
+            // дописать CRUD операции
             Session session = sessionFactory.getCurrentSession();
             session.beginTransaction();
-            Plane plane = new Plane(2, "fuel", "TU-134",121, "airline", 80);
+            //create query
+            Plane plane = new Plane(2, "fuel", "TU-134",new BigDecimal("121"), "airline", 80);
+            Car car = new Car(3, "fuel", "BMW", new BigDecimal("50000"), 12);
+            Bike bike = new Bike(4, "fuel", "KAWASAKI", new BigDecimal("20000"));
+            Truck truck = new Truck(5, "fuel", "VOLVO", new BigDecimal("66666"), 12.2);
             session.save(plane);
+            session.save(car);
+            session.save(bike);
+            session.save(truck);
+            // Get query
+            System.out.println(session.get(Plane.class, 1L));
+            // Delete query
+            session.delete(plane);
+            //Update query
+            plane.setModel("TU-135");
+            session.save(plane);
+
+
         } finally {
             sessionFactory.close();
         }
