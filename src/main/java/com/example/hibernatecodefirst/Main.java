@@ -33,8 +33,7 @@ public class Main {
             // дописать CRUD операции
             Session session = sessionFactory.getCurrentSession();
             session.beginTransaction();
-            //create query
-            Plane plane = new Plane(2, "fuel", "TU-134",new BigDecimal("121"), "airline", 80);
+            Plane plane = new Plane(2, "fuel", "TU-134", new BigDecimal("121"), "airline", 80);
             Car car = new Car(3, "fuel", "BMW", new BigDecimal("50000"), 12);
             Bike bike = new Bike(4, "fuel", "KAWASAKI", new BigDecimal("20000"));
             Truck truck = new Truck(5, "fuel", "VOLVO", new BigDecimal("66666"), 12.2);
@@ -45,10 +44,11 @@ public class Main {
             // Get query
             System.out.println(session.get(Plane.class, 1L));
             // Delete query
-            session.delete(plane);
+            session.delete(session.get(Plane.class, 1L));
+            session.createQuery("delete Plane where id = 1").executeUpdate();
             //Update query
-            plane.setModel("TU-135");
-            session.save(plane);
+            truck.setLoadCapacity(13.2);
+            session.save(truck);
 
 
         } finally {
